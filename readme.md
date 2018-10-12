@@ -67,3 +67,7 @@ separately. The merging appends the changes to the master file.
 
 Merging branches into master will automatically commit.
 
+##print_r vs echo
+echo will print text, strings, numbers
+print_r will print the object and the properties of the object
+
