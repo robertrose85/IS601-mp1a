@@ -6,23 +6,16 @@
  * Time: 6:31 PM
  */
 
-main::start();
+main::start("sample.csv");
+
 
 class main {
 
-    static public function start(){
+    static public function start($filename){
 
-        $csv = 'sample.csv';
+        $records = csv::getRecords($filename);
 
-        $fileRead = fopen("$csv","r");
-
-        while(!feof($fileRead))
-        {
-            $row[] = fgetcsv($fileRead, 50);
-        }
-
-        print_r($row);
-        fclose($fileRead);
+        print_r($records);
 
         /**
         $records = csv::getRecords();
@@ -35,11 +28,23 @@ class main {
 
 /** Read the file */
 
-/**
 class csv {
 
-    static public function getRecords() {
+    static public function getRecords($filename) {
+        /** Passes the file name in, returns the records */
 
+        $fileRead = fopen("$filename","r");
+
+        while(!feof($fileRead))
+        {
+            $row[] = fgetcsv($fileRead, 50);
+        }
+
+        return $row;
+        fclose($fileRead);
+
+
+        /**
         $make = 'Mazda';
         $model = 'CX-5';
         $car = AutomobileFactory::create($make, $model);
@@ -49,6 +54,7 @@ class csv {
         print_r($records);
 
         return $records;
+         */
 
     }
 
