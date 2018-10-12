@@ -14,12 +14,9 @@ class main {
     static public function start($filename){
 
         /** Prints $records */
-
         $records = csv::getRecords($filename);
         $table = html::generateTable($records);
-
         }
-
 }
 
 class html
@@ -42,16 +39,11 @@ class html
                 $values = array_values($array);
 
                 print_r($values);
-
             }
-
             $count++;
         }
     }
 }
-
-
-
 /** Read the file */
 
 class csv {
@@ -60,9 +52,7 @@ class csv {
         /** Passes the file name in, returns the records */
 
         $fileRead = fopen("$filename","r");
-
         $fieldNames = array();
-
         $count = 0;
 
         while(!feof($fileRead))
@@ -77,13 +67,9 @@ class csv {
             }
             $count++;
         }
-
         fclose($fileRead);
         return $records;
-
-
     }
-
 }
 
 class record
@@ -97,15 +83,12 @@ class record
         foreach($record as $property => $value){
             $this->createProperty($property, $value);
         }
-
         //print_r($this);
-
     }
 
     public function returnArray()
     {
         $array = (array) $this;
-
         return $array;
     }
 
@@ -119,9 +102,7 @@ class recordFactory
     /* statements says that $array has to be an array and if no data is passed, $array is null */
     public static function create(Array $fieldNames = null, Array $values = null)
     {
-
         $record = new record($fieldNames, $values);
-
         return $record;
     }
 }
