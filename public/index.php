@@ -13,9 +13,14 @@ class main {
 
     static public function start($filename){
 
+        /** Prints $records */
+
         $records = csv::getRecords($filename);
 
-        print_r($records);
+        foreach($records as $record){
+            print_r($record);
+            $record->createRow();
+        }
 
         /**
         $records = csv::getRecords();
@@ -35,14 +40,25 @@ class csv {
 
         $fileRead = fopen("$filename","r");
 
+        $fieldNames = array();
+
+        $count = 0;
+
         while(!feof($fileRead))
         {
-            $row[] = fgetcsv($fileRead, 50);
+            $record = fgetcsv($fileRead, '50');
+
+            if($count == 0){
+                $fieldNames = $record;
+            } else {
+                /* creates an array for each record in the csv using the recordFactory object */
+                $row[] = recordFactory::create($fieldNames, $record);
+            }
+            $count++;
         }
 
-        return $row;
         fclose($fileRead);
-
+        return $row;
 
         /**
         $make = 'Mazda';
@@ -59,6 +75,51 @@ class csv {
     }
 
 }
+
+class record
+{
+    public function __construct(Array $fieldNames = null, $values = null)
+    {
+        /* $record is the array coming in from the recordFactory object */
+
+        //print_r($fieldNames);
+        //print_r($values);
+        $record = array_combine($fieldNames, $values);
+
+        foreach($record as $property => $value){
+            $this->createProperty($property, $value);
+        }
+
+        print_r($this);
+
+    }
+
+    public function createRow()
+    {
+        return $array;
+    }
+
+    public function createProperty($name = 'first', $value = 'bob')
+    {
+        $this->{$name} = $value;
+    }
+}
+class recordFactory
+{
+    /* statements says that $array has to be an array and if no data is passed, $array is null */
+    public static function create(Array $fieldNames = null, Array $record = null)
+    {
+
+        $record = new record($fieldNames, $record);
+
+        return $record;
+    }
+}
+
+
+
+
+
  /** Make the table */
 /**
 class html {
@@ -109,5 +170,6 @@ class AutomobileFactory {
 
         return new Automobile($make, $model);
     }
-}
+ */
+
 
