@@ -48,7 +48,8 @@ class html
 
 class csv {
 
-    static public function getRecords($filename) {
+    static public function getRecords($filename)
+    {
         /** Passes the file name in, returns the records */
 
         $fileRead = fopen("$filename","r");
@@ -57,18 +58,28 @@ class csv {
 
         while(!feof($fileRead))
         {
-            $record = fgetcsv($fileRead, '50');
-
+            $record = fgetcsv($fileRead);
             if($count == 0){
                 $fieldNames = $record;
-            } else {
+                /**print_r($fieldnames); // this works*/
+            }
+            else {
                 /* creates an array for each record in the csv using the recordFactory object */
                 $records[] = recordFactory::create($fieldNames, $record);
+
+                /**print_r($records); // this works
+                return $records; // returns fieldNames and one set of records, kills loop*/
             }
             $count++;
+            //return $records; // this breaks the counter
+            //print_r($records); // prints but shows iterations
         }
-        fclose($fileRead);
+
+        //print_r($fieldNames); // Does not work
+        //print_r($records); // Does not work
+        //fclose($fileRead);
         return $records;
+
     }
 }
 
@@ -103,6 +114,7 @@ class recordFactory
     public static function create(Array $fieldNames = null, Array $values = null)
     {
         $record = new record($fieldNames, $values);
+        //print_r($record); // this works
         return $record;
     }
 }
