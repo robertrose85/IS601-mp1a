@@ -16,10 +16,9 @@ class main {
         /** Prints $records */
 
         $records = csv::getRecords($filename);
+        $table = html::generateTable($records);
 
-        foreach($records as $record){
-            print_r($record);
-            $record->createRow();
+
         }
 
         /**
@@ -27,8 +26,19 @@ class main {
         $table = html::generateTable($records);
         system::printPage($table);
          */
+}
+
+class html
+{
+    public static function generateTable($records)
+    {
+        foreach ($records as $record) {
+            $array = $record->returnArray();
+            print_r($array);
+        }
     }
 }
+
 
 
 /** Read the file */
@@ -94,8 +104,10 @@ class record
 
     }
 
-    public function createRow()
+    public function returnArray()
     {
+        $array = (array) $this;
+
         return $array;
     }
 
