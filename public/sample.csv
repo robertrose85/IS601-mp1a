@@ -1,3 +1,4 @@
-First,Last,Middle
-Robert,Rose,A
-Joe,Smith,T
+First,Last,Middle,testCol
+Robert,Rose,A,1
+Joe,Smith,T,2
+test1,test2,test3,3

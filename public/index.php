@@ -1,3 +1,19 @@
+<html>
+
+<!-- Grabbed these from bootstrap homework -->
+<title>Robert Rose - Mini Project 1</title>
+<!--<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" /> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+<h1>
+    IS601 - Mini Project 1
+</h1>
+
+
+</html>
+
 <?php
 /**
  * Created by PhpStorm.
@@ -48,7 +64,8 @@ class html
     }
     public static function getHeader($fields)
     {
-       echo '<html><body><table class="table-striped"><thead><tr>';
+        //Took format from bootstrap assignment
+       echo '<html><body><table class="table table-striped"><thead class="thead-dark"><tr>';
 
        $header = count($fields);
 
@@ -62,11 +79,12 @@ class html
     public static function getValues($values)
     {
         echo "<tr>";
-
+        // used in counter for for loop
         $val = count($values);
 
         for($x = 0; $x < $val; $x++)
         {
+            //grabs value at [$x] and passes the data to the row. Not sure if this is the best way.
             $data = $values[$x];
             echo '<td>' . $data . '</td>';
         }
