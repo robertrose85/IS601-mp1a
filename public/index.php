@@ -31,22 +31,24 @@ class html
                 $array = $record->returnArray();
                 $fields = array_keys($array);
                 $values = array_values($array);
-                //self::getHeader($fields);
-                print_r($fields);
-                print_r($values);
+                self::getHeader($fields);
+                self::getValues($values);
+                //print_r($fields);
+                //print_r($values);
 
             } else{
                 $array = $record->returnArray();
                 $values = array_values($array);
 
-                print_r($values);
+                self::getValues($values);
+                //print_r($values);
             }
             $count++;
         }
     }
     public static function getHeader($fields)
     {
-       echo "<html><body><thead><tr>";
+       echo '<html><body><table class="table-striped"><thead><tr>';
 
        $header = count($fields);
 
@@ -68,7 +70,7 @@ class html
             $data = $values[$x];
             echo '<td>' . $data . '</td>';
         }
-        echo "</tr>";
+        echo "</tr></body></html>";
     }
 }
 /** Read the file */
