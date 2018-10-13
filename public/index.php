@@ -51,7 +51,6 @@ class csv {
     static public function getRecords($filename)
     {
         /** Passes the file name in, returns the records */
-
         $fileRead = fopen("$filename","r");
         $fieldNames = array();
         $count = 0;
@@ -61,23 +60,16 @@ class csv {
             $record = fgetcsv($fileRead);
             if($count == 0){
                 $fieldNames = $record;
-                /**print_r($fieldnames); // this works*/
             }
             else {
                 /* creates an array for each record in the csv using the recordFactory object */
                 $records[] = recordFactory::create($fieldNames, $record);
-
-                /**print_r($records); // this works
-                return $records; // returns fieldNames and one set of records, kills loop*/
             }
             $count++;
-            //return $records; // this breaks the counter
-            //print_r($records); // prints but shows iterations
         }
-
         //print_r($fieldNames); // Does not work
         //print_r($records); // Does not work
-        //fclose($fileRead);
+        fclose($fileRead);
         return $records;
 
     }
@@ -91,14 +83,14 @@ class record
 
         $record = array_combine($fieldNames, $values);
 
-        foreach($record as $property => $value){
+        foreach($record as $property => $value)
+        {
             $this->createProperty($property, $value);
         }
         //print_r($this);
     }
 
-    public function returnArray()
-    {
+    public function returnArray(){
         $array = (array) $this;
         return $array;
     }
