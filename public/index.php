@@ -31,6 +31,7 @@ class html
                 $array = $record->returnArray();
                 $fields = array_keys($array);
                 $values = array_values($array);
+                //self::getHeader($fields);
                 print_r($fields);
                 print_r($values);
 
@@ -42,6 +43,32 @@ class html
             }
             $count++;
         }
+    }
+    public static function getHeader($fields)
+    {
+       echo "<html><body><thead><tr>";
+
+       $header = count($fields);
+
+       for($x = 0; $x < $header; $x++){
+            $fieldHeader = $fields[$x];
+            echo '<th>' . $fieldHeader . '</th>';
+        }
+        echo "</tr></thead>";
+
+    }
+    public static function getValues($values)
+    {
+        echo "<tr>";
+
+        $val = count($values);
+
+        for($x = 0; $x < $val; $x++)
+        {
+            $data = $values[$x];
+            echo '<td>' . $data . '</td>';
+        }
+        echo "</tr>";
     }
 }
 /** Read the file */
